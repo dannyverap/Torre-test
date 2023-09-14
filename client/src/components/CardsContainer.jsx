@@ -51,7 +51,7 @@ export const CardsContainer = () => {
   };
 
   return (
-    <div className="  my-10">
+    <div className="  my-10 ">
       {currentUsers?.map(
         ({ ardaId, username, name, imageUrl, professionalHeadline }) => {
           return (
