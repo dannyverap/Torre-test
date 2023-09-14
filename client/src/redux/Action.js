@@ -8,7 +8,7 @@ export const getAllUsers = (query) => {
       const { data } = await axios.post(`/torre/`, { query: query, limit: 50 });
       return dispatch({ type: GET_ALL_USERS_BY_STREAM, payload: data });
     } catch (error) {
-      console.log(error);
+      alert(error.response.data);
     }
   };
 };

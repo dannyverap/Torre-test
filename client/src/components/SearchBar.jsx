@@ -20,7 +20,6 @@ const handleChange = (event) => {
     event.preventDefault();
     
       const response = dispatch(getAllUsers(form.query))
-      console.log(form.query);
       return response;
     }
   
