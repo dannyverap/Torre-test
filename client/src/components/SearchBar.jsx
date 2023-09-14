@@ -27,7 +27,7 @@ const handleChange = (event) => {
   
 
   return (
-    <form className="w-[350px]" onSubmit={handleSubmit}>
+    <form className="w-[350px] mb-4 mt-4" onSubmit={handleSubmit}>
       <div className="relative w-full">
         <input
           type="search"
