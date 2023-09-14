@@ -12,21 +12,38 @@ export const Pagination = ({
   }
 
   return (
-    <nav aria-label="Page navigation example">
-      <a onClick={clickPrevPage} disabled={currentPage === 1}>
-        Anterior
-      </a>
-      {pageNumbers?.map((number) => {
-        const isActive = number === currentPage;
-        return (
-          <li key={number} onClick={() => clickPage(number)}>
-            {number}
-          </li>
-        );
-      })}
-      <a onClick={clickNextPage} disabled={currentPage === maxPages}>
-        Siguiente
-      </a>
+    <nav >
+      <ul className="inline-flex -space-x-px text-sm">
+        <li>
+          <a
+            className="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            onClick={clickPrevPage}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </a>
+        </li>
+        {pageNumbers?.map((number) => {
+          return (
+            <li
+              className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              key={number}
+              onClick={() => clickPage(number)}
+            >
+              {number}
+            </li>
+          );
+        })}
+        <li>
+          <a
+            className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            onClick={clickNextPage}
+            disabled={currentPage === maxPages}
+          >
+            Next
+          </a>
+        </li>
+      </ul>
     </nav>
   );
 };
