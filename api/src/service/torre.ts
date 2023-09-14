@@ -1,4 +1,5 @@
 import axios from "axios";
+import { torreQuery } from "../interface/torre";
 
 const userByNameService = async (name: string) => {
   const torreResponse = await axios.get(`https://torre.bio/api/bios/${name}`);
@@ -7,14 +8,18 @@ const userByNameService = async (name: string) => {
   return user;
 };
 
-const usersByStreamsService = async (body: any) => {
+const usersByStreamsService = async ({ query, limit }: torreQuery) => {
   const torreResponse = await axios.post(
     "https://torre.ai/api/entities/_searchStream",
-    body
+    { query, limit }
   );
-  const data = torreResponse.data;
+  const { data } = torreResponse;
   if (!data) throw new Error("Users not found");
-  return data;
+
+  const cleanData = data.split("\n").filter((line: any) => line.trim() !== "");
+
+  const users = cleanData.map((element: any) => JSON.parse(element));
+  return users;
 };
 
 export { userByNameService, usersByStreamsService };
