@@ -1,11 +1,22 @@
 import { Card } from "./Card";
-import { useSelector } from "react-redux";
+import { FavoriteCard } from "./FavoriteCard";
+import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { Pagination } from "./pagination";
+import { useNavigate } from 'react-router-dom'
 
+import {getAllFavorites} from "../redux/Action"
 
-export const  CardsContainer = () => {
-  const allUsers = useSelector((state) => state.allUsers);
+export const FavoritesCardsContainer = () => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+  const allUsers = useSelector((state) => state.allFavorites);
+
+  useEffect(() => {
+    dispatch(getAllFavorites());
+  }, [dispatch]);
+
 
   const [pagination, setPagination] = useState({
     currentPage: 1,
@@ -23,7 +34,10 @@ export const  CardsContainer = () => {
 
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = allUsers.slice(indexOfFirstUser, indexOfLastUser);
+  const currentFavoritesUsers = allUsers.slice(
+    indexOfFirstUser,
+    indexOfLastUser
+  );
 
   const maxPages = Math.ceil(allUsers.length / usersPerPage);
 
@@ -53,10 +67,10 @@ export const  CardsContainer = () => {
 
   return (
     <div className="   grid place-content-center  ">
-      {currentUsers?.map(
+      {currentFavoritesUsers?.map(
         ({ ardaId, username, name, imageUrl, professionalHeadline }) => {
           return (
-            <Card
+            <FavoriteCard
               key={ardaId}
               username={username}
               ardaId={ardaId}

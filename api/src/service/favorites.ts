@@ -9,7 +9,7 @@ const postFavoriteUserService = async ({
   professionalHeadline,
 }: User) => {
   const userInDB = await UserModel.findOne({ ardaId });
-  if (userInDB) throw new Error("User already exists");
+  if (userInDB) return;
   const newFavoriteUser = await UserModel.create({
     ardaId,
     username,
@@ -30,7 +30,7 @@ const getUserByArdaIdService = async (ardaId: String) => {
   if (!user) {
     throw new Error("user not found");
   }
-  return user;
+  return user.ardaId;
 };
 
 const deleteFavoriteUserService = async (ardaId: String) => {

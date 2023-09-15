@@ -3,7 +3,7 @@ import { useState } from "react";
 import { addFav, removeFav } from "../redux/Action";
 import { useLocation } from 'react-router-dom'
 
-export const Card = ({
+export const FavoriteCard = ({
   ardaId,
   username,
   name,
@@ -13,7 +13,7 @@ export const Card = ({
   
   const { pathname } = useLocation()
   
-  const [isFav, setIsFav] = useState(false);
+  const [isFav, setIsFav] = useState(true);
 
   const handleFavorite = async () => {
     isFav
