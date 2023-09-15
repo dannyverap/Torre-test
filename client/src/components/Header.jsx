@@ -1,4 +1,4 @@
-import { NavBar } from "./Navbar";
+import {NavBar} from "./NavBar"
 import { SearchBar } from "./SearchBar";
 import logo from "../assets/logoTorre.svg";
 
