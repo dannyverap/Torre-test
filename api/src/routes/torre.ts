@@ -4,6 +4,6 @@ import { getUserByName, getUsersByStreams } from "../controllers/torre";
 const router = Router();
 
 router.post("/", getUsersByStreams);
-router.get("/:name", getUserByName);
+router.get("/:a", getUserByName);
 
 export { router };

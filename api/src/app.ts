@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import db from "./config/mongo";
 import cors from "cors";
 import { router } from "./routes";
 import cookieParser from "cookie-parser";
@@ -15,4 +16,5 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.use(router);
+db().then(() => console.log("Conexion Ready"));
 app.listen(PORT, () => console.log(`Listo por el puerto ${PORT}`));
