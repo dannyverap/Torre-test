@@ -1,7 +1,8 @@
 import logo from "../assets/logo.jpeg";
 import { useState } from "react";
 import { addFav, removeFav } from "../redux/Action";
-import { useLocation } from 'react-router-dom'
+
+
 
 export const Card = ({
   ardaId,
@@ -11,7 +12,6 @@ export const Card = ({
   professionalHeadline,
 }) => {
   
-  const { pathname } = useLocation()
   
   const [isFav, setIsFav] = useState(false);
 

@@ -1,8 +1,13 @@
 import { NavBar } from "./Navbar";
 import { SearchBar } from "./SearchBar";
 import logo from "../assets/logoTorre.svg";
+import {  useLocation } from 'react-router-dom'
 
 export const Header = () => {
+
+  const { pathname } = useLocation()
+
+
   return (
     <header className="bg-gray-800 pl-4   flex place-content-between items-center mb-4 sticky top-0">
       <a href="https://torre.ai/" className="flex justify-between items-center text-yellow-500">
@@ -14,7 +19,13 @@ export const Header = () => {
 
       </a>
       <div className="flex place-content-between items-center">
-        <SearchBar />
+
+      {
+        pathname === "/" 
+          ? <SearchBar />
+          : null
+      }
+        
         <NavBar />
       </div>
     </header>

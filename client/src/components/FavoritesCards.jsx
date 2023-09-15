@@ -15,7 +15,7 @@ export const FavoritesCardsContainer = () => {
 
   useEffect(() => {
     dispatch(getAllFavorites());
-  }, [dispatch]);
+  }, [dispatch,allUsers]);
 
 
   const [pagination, setPagination] = useState({

@@ -1,7 +1,6 @@
 import logo from "../assets/logo.jpeg";
 import { useState } from "react";
 import { addFav, removeFav } from "../redux/Action";
-import { useLocation } from 'react-router-dom'
 
 export const FavoriteCard = ({
   ardaId,
@@ -10,9 +9,6 @@ export const FavoriteCard = ({
   imageUrl,
   professionalHeadline,
 }) => {
-  
-  const { pathname } = useLocation()
-  
   const [isFav, setIsFav] = useState(true);
 
   const handleFavorite = async () => {
@@ -50,7 +46,7 @@ export const FavoriteCard = ({
         </a>
 
         <p className="mb-3 font-normal text-white">{professionalHeadline}</p>
-        
+
         {<button onClick={handleFavorite}>{isFav ? "❤️" : "🖤"}</button>}
       </div>
     </div>
