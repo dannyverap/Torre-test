@@ -3,7 +3,8 @@ import { handleHttP } from "../utils/error.handler";
 import {
   postFavoriteUserService,
   deleteFavoriteUserService,
-  getAllFavoritesService
+  getAllFavoritesService,
+  getUserByArdaIdService
 } from "../service/favorites";
 
 const postFavoriteUser = async ({ body }: Request, res: Response) => {
@@ -24,6 +25,16 @@ const getAllFavorites = async (req: Request, res: Response) => {
     }
   };
 
+  const getUserByArdaId = async ({params}: Request, res: Response) => {
+    try {
+      const { ardaId } = params;
+      const favoriteUser = await getUserByArdaIdService(`${ardaId}`);
+      res.send(favoriteUser);
+    } catch (error) {
+      handleHttP(res, `${error}`);
+    }
+  };
+
 const deleteFavoriteUser = async ({ params }: Request, res: Response) => {
   try {
     const { ardaId } = params;
@@ -36,4 +47,4 @@ const deleteFavoriteUser = async ({ params }: Request, res: Response) => {
   }
 };
 
-export { postFavoriteUser, deleteFavoriteUser , getAllFavorites};
+export { postFavoriteUser, deleteFavoriteUser , getAllFavorites,getUserByArdaId};

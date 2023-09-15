@@ -20,10 +20,18 @@ const postFavoriteUserService = async ({
   return newFavoriteUser;
 };
 
-const getAllFavoritesService =  async () => {
-    const allUsers = await UserModel.find();
-    return allUsers;
-  };
+const getAllFavoritesService = async () => {
+  const allUsers = await UserModel.find();
+  return allUsers;
+};
+
+const getUserByArdaIdService = async (ardaId: String) => {
+  const user = await UserModel.findOne({ardaId});
+  if (!user) {
+    throw new Error("user not found");
+  }
+  return user;
+};
 
 const deleteFavoriteUserService = async (ardaId: String) => {
   const user = await UserModel.findOneAndDelete({ ardaId });
@@ -33,4 +41,9 @@ const deleteFavoriteUserService = async (ardaId: String) => {
   return `${user?.name} Deleted from favorites`;
 };
 
-export { postFavoriteUserService, deleteFavoriteUserService, getAllFavoritesService };
+export {
+  postFavoriteUserService,
+  deleteFavoriteUserService,
+  getAllFavoritesService,
+  getUserByArdaIdService
+};
