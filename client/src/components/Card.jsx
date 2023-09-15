@@ -2,8 +2,6 @@ import logo from "../assets/logo.jpeg";
 import { useState } from "react";
 import { addFav, removeFav } from "../redux/Action";
 
-
-
 export const Card = ({
   ardaId,
   username,
@@ -11,8 +9,6 @@ export const Card = ({
   imageUrl,
   professionalHeadline,
 }) => {
-  
-  
   const [isFav, setIsFav] = useState(false);
 
   const handleFavorite = async () => {
@@ -28,7 +24,7 @@ export const Card = ({
     setIsFav(!isFav);
   };
   return (
-    <div className="flex flex-col max-h-30 min-h-30  bg-gray-800 border border-white rounded-lg shadow md:flex-row items-center md:max-w-xl hover:bg-gray-700 m-3">
+    <div className="flex flex-col max-h-30 min-h-30  bg-white border border-white rounded-lg shadow md:flex-row items-center md:max-w-xl m-3">
       {imageUrl ? (
         <img
           className="object-cover max-h-30 min-h-30 w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
@@ -42,16 +38,32 @@ export const Card = ({
           alt={name}
         />
       )}
-      <div className="flex flex-col justify-between p-4 leading-normal">
-        <a href={`http://www.torre.ai/${username}`} target="_blank">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-white ">
-            {name}
-          </h5>
-        </a>
 
-        <p className="mb-3 font-normal text-white">{professionalHeadline}</p>
+      <div className=" flex w-96 flex-col rounded-xl  bg-white bg-clip-border text-gray-800 ">
+        <div className="p-6">
+          <a href={`http://www.torre.ai/${username}`} target="_blank">
+            <h5 className="mb-2 block font-sans text-xl font-bold leading-snug tracking-normal text-blue-gray-900 antialiased">
+              {name}
+            </h5>
+          </a>
+          <p className="block font-sans text-base font-light leading-relaxed text-inherit antialiased">
+            {professionalHeadline}
+          </p>
+        </div>
+        <div className="p-6 pt-0 max-h-30 min-h-30 w-full">
+         
+            {
+              <button
+                className=" rounded-lg bg-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white  focus:opacity-[0.85]  active:opacity-[0.85]  disabled:pointer-events-none disabled:opacity-50 "
+                type="button"
+                data-ripple-light="true"
+                onClick={handleFavorite}
+              >
+                {isFav ? "❤️" : "🤍"}
+              </button>
+            }
         
-        {<button onClick={handleFavorite}>{isFav ? "❤️" : "🖤"}</button>}
+        </div>
       </div>
     </div>
   );

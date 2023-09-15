@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../redux/Action";
+import {  useLocation } from 'react-router-dom'
 
 export const SearchBar = () => {
+  const { pathname } = useLocation()
 
   const dispatch = useDispatch();
   const [form, setForm] = useState({
@@ -26,7 +28,7 @@ const handleChange = (event) => {
   
 
   return (
-    <form className="w-[350px] mb-4 mt-4" onSubmit={handleSubmit}>
+    <form className={`w-[350px] mb-4 mt-4 ${(pathname==="/")?"visible":"invisible"} `} onSubmit={handleSubmit}>
       <div className="relative w-full">
         <input
           type="search"
